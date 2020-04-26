@@ -1,5 +1,6 @@
 const numberButtons = document.querySelectorAll(".number");
 const screenSection = document.getElementById("screen-section");
+const equals = document.getElementById("equals");
 const allOperators = document.querySelectorAll(".operator");
 
 let numbers = [];
@@ -61,3 +62,37 @@ for (operator of allOperators) {
     console.log(numbers);
   });
 }
+
+equals.addEventListener("click", function () {
+  if (numbers.length === 1 || numbers.length === 2) {
+    return;
+  }
+  switch (numbers[1]) {
+    case "+":
+      screenSection.textContent = numbers[0] + numbers[numbers.length - 1];
+      numbers = [];
+      numbers.push(+screenSection.textContent);
+      break;
+    case "-":
+      screenSection.textContent = numbers[0] - numbers[numbers.length - 1];
+      numbers = [];
+      numbers.push(+screenSection.textContent);
+      break;
+    case "*":
+      screenSection.textContent = numbers[0] * numbers[numbers.length - 1];
+      numbers = [];
+      numbers.push(+screenSection.textContent);
+      break;
+    case "/":
+      screenSection.textContent = numbers[0] / numbers[numbers.length - 1];
+      numbers = [];
+      numbers.push(+screenSection.textContent);
+      break;
+    case "%":
+      screenSection.textContent = numbers[0] % numbers[numbers.length - 1];
+      numbers = [];
+      numbers.push(+screenSection.textContent);
+      break;
+  }
+  console.log(numbers);
+});
