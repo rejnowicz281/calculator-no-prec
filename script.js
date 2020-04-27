@@ -1,5 +1,6 @@
 const numberButtons = document.querySelectorAll(".number");
-const screenSection = document.getElementById("screen-section");
+const screenTop = document.getElementById("screen-top");
+const screenBottom = document.getElementById("screen-bottom");
 const equals = document.getElementById("equals");
 const allOperators = document.querySelectorAll(".operator");
 
@@ -17,15 +18,15 @@ for (btn of numberButtons) {
     if (numbers.length === 3) {
       numbers.splice(2, numbers.length);
     }
-    screenSection.textContent += this.textContent;
-    numbers.push(+screenSection.textContent);
+    screenBottom.textContent += this.textContent;
+    numbers.push(+screenBottom.textContent);
     console.log(numbers);
   });
 }
 
 for (operator of allOperators) {
   operator.addEventListener("click", function () {
-    screenSection.textContent = "";
+    screenBottom.textContent = "";
     if (numbers.length === 2) {
       numbers.splice(1, numbers.length); // prevent being able to push multiple operators next to each other
     }
@@ -58,6 +59,7 @@ for (operator of allOperators) {
           break;
       }
     }
+    screenTop.textContent = numbers[0];
     numbers.push(this.textContent);
     console.log(numbers);
   });
@@ -69,30 +71,32 @@ equals.addEventListener("click", function () {
   }
   switch (numbers[1]) {
     case "+":
-      screenSection.textContent = numbers[0] + numbers[numbers.length - 1];
+      screenBottom.textContent = numbers[0] + numbers[numbers.length - 1];
       numbers = [];
-      numbers.push(+screenSection.textContent);
+      numbers.push(+screenBottom.textContent);
       break;
     case "-":
-      screenSection.textContent = numbers[0] - numbers[numbers.length - 1];
+      screenBottom.textContent = numbers[0] - numbers[numbers.length - 1];
       numbers = [];
-      numbers.push(+screenSection.textContent);
+      numbers.push(+screenBottom.textContent);
       break;
     case "*":
-      screenSection.textContent = numbers[0] * numbers[numbers.length - 1];
+      screenBottom.textContent = numbers[0] * numbers[numbers.length - 1];
       numbers = [];
-      numbers.push(+screenSection.textContent);
+      numbers.push(+screenBottom.textContent);
       break;
     case "/":
-      screenSection.textContent = numbers[0] / numbers[numbers.length - 1];
+      screenBottom.textContent = numbers[0] / numbers[numbers.length - 1];
       numbers = [];
-      numbers.push(+screenSection.textContent);
+      numbers.push(+screenBottom.textContent);
       break;
     case "%":
-      screenSection.textContent = numbers[0] % numbers[numbers.length - 1];
+      screenBottom.textContent = numbers[0] % numbers[numbers.length - 1];
       numbers = [];
-      numbers.push(+screenSection.textContent);
+      numbers.push(+screenBottom.textContent);
       break;
   }
+  screenTop.textContent = numbers[0];
   console.log(numbers);
 });
+
